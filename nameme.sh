@@ -2,7 +2,7 @@
 
 DICT_DIR="/usr/share/dict/words"
 DEFAULT_WORD_COUNT=2
-DEFAULT_CASING="LOWER_CAMEL"
+DEFAULT_CASING="camel"
 VALID_CASING=( 
 	"camel" 
 	"CAMEL"
