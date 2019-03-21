@@ -19,5 +19,5 @@ snake	| this_is_lower_snake_case
 SNAKE	| THIS_IS_UPPER_SNAKE_CASE
 case	| thisislowercase
 CASE	| THISISUPPERCASE
-sentence| This is a lower sentence.
-SENTENCE| THIS IS AN UPPER SENTENCE!
+sentence| This is a lowercase sentence.
+SENTENCE| THIS IS AN UPPERCASE SENTENCE!
