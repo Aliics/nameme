@@ -3,7 +3,15 @@
 DICT_DIR="/usr/share/dict/words"
 DEFAULT_WORD_COUNT=2
 DEFAULT_CASING="LOWER_CAMEL"
-VALID_CASING=( "LOWER_CAMEL" "UPPER_CAMEL" "LOWER_SNAKE" "UPPER_SNAKE" "SENT" )
+VALID_CASING=( 
+	"LOWER_CAMEL" 
+	"UPPER_CAMEL"
+	"LOWER_SNAKE" 
+	"UPPER_SNAKE" 
+	"LOWER_CASE"
+	"UPPER_CASE"
+	"SENTENCE" 
+)
 
 echo_ansi_text() {
 	if [[ -n $1 && -n $2 ]]; then
@@ -35,8 +43,46 @@ max_lines=$(wc -l $DICT_DIR | awk $'{print $1}')
 
 i=1
 while [[ $i -le "$word_count" ]]; do
+	delimiter=""
+	if [[ $outcome != "" ]]; then
+		if [[ $casing = "LOWER_SNAKE" || $casing = "UPPER_SNAKE" ]]; then
+			delimiter="_"
+		elif [[ $casing = "SENT" ]]; then
+			delimiter=" "
+		fi	
+	fi
+
 	random_line=$(shuf -i "1-$max_lines" -n 1)
-	outcome="$outcome $(awk NR=="$random_line" $DICT_DIR)"
+	line=$(awk NR=="$random_line" $DICT_DIR)
+	append=""
+	
+	case $casing in
+		"LOWER_CAMEL") 
+			if [[ $i = 1 ]]; then
+				append=${line,,}
+			else
+				append=${line^}
+			fi
+		;;
+		"UPPER_CAMEL")
+			append=${line^}
+		;;
+		"LOWER_SNAKE" | "LOWER_CASE")
+			append=${line,,}
+		;;
+		"UPPER_SNAKE" | "UPPER_CASE")
+			append=${line^^}
+		;;
+		"SENT")
+			if [[ $i = 1 ]]; then
+				append=${line^}
+			else
+				append=${line,}
+			fi
+		;;
+	esac
+
+	outcome="$outcome$delimiter$append"
 	i="$i + 1"
 done
 
