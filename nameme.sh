@@ -116,4 +116,4 @@ done
 
 echo_ansi_text "\e[32m" "Randomly generated some text \e[36m[$outcome] \e[32mand copied it to your clipboard." | tr -d \'
 
-echo $outcome | xclip -sel clip
+echo $outcome | tr -d \' | xclip -sel clip
