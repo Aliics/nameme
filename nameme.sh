@@ -114,5 +114,6 @@ while [[ $i -le "$word_count" ]]; do
 	i="$i + 1"
 done
 
-echo_ansi_text "\e[32m" "Randomly generated name: \e[36m$outcome" | tr -d \'
+echo_ansi_text "\e[32m" "Randomly generated some text \e[36m[$outcome] \e[32mand copied it to your clipboard." | tr -d \'
 
+echo $outcome | xclip -sel clip
