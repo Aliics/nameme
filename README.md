@@ -8,6 +8,7 @@ It's very basic, supply two optional arguments for `word_count(int)` and `casing
 The program will sort out which is which by it's type. By default it sets camelCase and 2 words.
 > $ nameme CAMEL 5 #output ThereonProblemsToriesForelocksGleefully
 
+This result will be piped straight into xclip. (A good linux clipboard tool.)
 Also, executing the setup will chuck the shell script into your `/usr/bin` for easier access.
 
 # cases
